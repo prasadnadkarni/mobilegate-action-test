@@ -8,11 +8,11 @@ name: MobileGate release gate
 # stands in for "a build artifact produced earlier in the same job" —
 # the action doesn't care how the file at apk-path came to exist.
 #
-# com.keylesspalace.tusky_142.apk is a known BLOCKED case
-# (MG-003: android:allowBackup="true", no override) from mobilegate's
-# own corpus results — deliberately chosen so this test exercises the
-# actual failure path (exit code propagation, PR comment on a BLOCKED
-# result), not just a trivial PASS.
+# com.keylesspalace.tusky_142.apk is a known PASS case from mobilegate's
+# own corpus results (allowBackup explicitly false) — swapped in after
+# an earlier commit tested the BLOCKED path with Simple Flashlight, to
+# confirm the same PR's sticky comment correctly updates from a BLOCKED
+# body to a PASS body, not just refreshes identical content.
 
 on:
   pull_request:
