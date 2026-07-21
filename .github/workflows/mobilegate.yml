@@ -1,6 +1,6 @@
 name: MobileGate release gate
 
-# End-to-end test of prasadnadkarni/mobilegate@v0.1.0 as a GitHub Action.
+# End-to-end test of prasadnadkarni/mobilegate@v0.2.0 as a GitHub Action.
 # Deliberately uses a pinned, checksum-verified real-world APK fetched
 # in this workflow rather than a committed binary (redistributing an
 # APK isn't ours to do) or a real Gradle build (out of scope for this
@@ -12,7 +12,9 @@ name: MobileGate release gate
 # (MG-003: android:allowBackup="true", no override) from mobilegate's
 # own corpus results — deliberately chosen so this test exercises the
 # actual failure path (exit code propagation, PR comment on a BLOCKED
-# result), not just a trivial PASS.
+# result, and now: SARIF upload on a BLOCKED result — the run where
+# Code Scanning findings matter most, and the one most likely to be
+# silently skipped by a missing if: always()).
 
 on:
   pull_request:
@@ -22,6 +24,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  security-events: write   # required for the SARIF upload
 
 jobs:
   gate:
@@ -35,6 +38,7 @@ jobs:
           echo "b4cd07c40a3d5711461670a2f460a1447acf3836c0e90471b7ba5c8b4c2f9bb3  app.apk" | sha256sum -c -
 
       - name: MobileGate
-        uses: prasadnadkarni/mobilegate@v0.1.0
+        uses: prasadnadkarni/mobilegate@v0.2.0
         with:
           apk-path: app.apk
+          sarif-file: mobilegate.sarif
