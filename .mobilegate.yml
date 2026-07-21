@@ -1,0 +1,3 @@
+ignore_rules:
+  - id: "MG-004"
+    reason: "E2E test: verifying SARIF behavior when a rule is suppressed — does GitHub auto-close the previously-open alerts, or leave them open?"
