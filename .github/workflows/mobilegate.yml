@@ -8,11 +8,11 @@ name: MobileGate release gate
 # stands in for "a build artifact produced earlier in the same job" —
 # the action doesn't care how the file at apk-path came to exist.
 #
-# com.simplemobiletools.flashlight_66.apk is a known BLOCKED case
-# (MG-003: android:allowBackup="true", no override) from mobilegate's
-# own corpus results — deliberately chosen so this test exercises the
-# actual failure path (exit code propagation, PR comment on a BLOCKED
-# result), not just a trivial PASS.
+# com.keylesspalace.tusky_142.apk is a known PASS case from mobilegate's
+# own corpus results (allowBackup explicitly false) — swapped in after
+# an earlier commit tested the BLOCKED path with Simple Flashlight, to
+# confirm the same PR's sticky comment correctly updates from a BLOCKED
+# body to a PASS body, not just refreshes identical content.
 
 on:
   pull_request:
@@ -31,8 +31,8 @@ jobs:
 
       - name: Fetch test APK (pinned, checksum-verified)
         run: |
-          curl -sSL -o app.apk https://f-droid.org/repo/com.simplemobiletools.flashlight_66.apk
-          echo "b4cd07c40a3d5711461670a2f460a1447acf3836c0e90471b7ba5c8b4c2f9bb3  app.apk" | sha256sum -c -
+          curl -sSL -o app.apk https://f-droid.org/repo/com.keylesspalace.tusky_142.apk
+          echo "3e8fcc49a80d4c30ab6f6037e51402c77e2694d27ec19ae5b8a93cd08b6caffa  app.apk" | sha256sum -c -
 
       - name: MobileGate
         uses: prasadnadkarni/mobilegate@v0.1.0
