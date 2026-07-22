@@ -1,6 +1,6 @@
 name: MobileGate release gate
 
-# End-to-end test of prasadnadkarni/mobilegate@v0.4.0 as a GitHub Action.
+# End-to-end test of prasadnadkarni/mobilegate@v0.4.1 as a GitHub Action.
 # Deliberately uses a pinned, checksum-verified real-world APK fetched
 # in this workflow rather than a committed binary (redistributing an
 # APK isn't ours to do) or a real Gradle build (out of scope for this
@@ -38,7 +38,7 @@ jobs:
           echo "b4cd07c40a3d5711461670a2f460a1447acf3836c0e90471b7ba5c8b4c2f9bb3  app.apk" | sha256sum -c -
 
       - name: MobileGate
-        uses: prasadnadkarni/mobilegate@v0.4.0
+        uses: prasadnadkarni/mobilegate@v0.4.1
         with:
           apk-path: app.apk
           sarif-file: mobilegate.sarif
