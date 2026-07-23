@@ -8,3 +8,4 @@ sticky PR comment.
 The Android-build-artifact path (a real Gradle-built APK rather than a
 fetched one) is a separate test, not yet run here — see
 `.github/workflows/mobilegate.yml`'s header comment.
+This works!
